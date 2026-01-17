@@ -1,24 +1,25 @@
 class Library:
-    def __init__(self, listOfBooks):
-        self.books = listOfBooks
+    def __init__(self, listofbooks):
+        self.books = listofbooks
 
-    def showbooks(self):
-        print("\n\tThe books available in library are:\n ")
+    def show_books(self):
+        print("\nThe books available in library are:\n ")
         for book in self.books:
-            print(f"\t\t* {book}")
+            print(f"* {book}")
 
-    def issueBook(self, bookname):
+    def issue_book(self, bookname):
         if bookname in self.books:
-            print(f"\nBook is issued! Enjoy reading...{bookname}")
+            print(f"\nBook issued Successfully! Enjoy reading :{bookname}")
             self.books.remove(bookname)
         else:
-            print(
-                "\nThis book is Not Available or issued to someone wait untill if available in library ")
+            print("\nThis book is Not Available or issued to someone, please wait untill its available in the library.")
 
-    def returnbook(self, bookname):
+    def return_book(self, bookname):
         if bookname not in self.books:
             self.books.append(bookname)
-            print(f"\nThank you for returning the book! ")
+            print(f"\nThank you for returning the book!")
+        else:
+            print("This book already exist in the library.")
 
 
 class Students:
@@ -31,31 +32,34 @@ if __name__ == "__main__":
     user1 = Students(username)
 
     LibraryShelf = Library(
-        ["Bajirao", "Ek purn apurn", "3 hazar taake", "Natsamrat", "Coding with ADITYA"])
+        ["Atomic Habits", "The Sixth Exinction", "Harry Potter", "Natsamrat", "Coding with ADITYA"])
 
-welcomMsg = '''
+welcom_Msg = """
     *** Welcome to the Great Library of ADITYA ***
             Press 1 for list of the books
             Press 2 for getting the book
             Press 3 for returning the book
             Press 4 for exit
-            '''
+            """
 
-print(welcomMsg)
+print(welcom_Msg)
+
 while (True):
-
-    userinp = int(input("\n\nEnter you choice : "))
-    if userinp > 4:
-        print("\n\t\t Enter correct choice... ")
-    elif userinp == 1:
-        LibraryShelf.showbooks()
-    elif userinp == 2:
-        issuebook = input("Enter the book name: ")
-        LibraryShelf.issueBook(issuebook)
-    elif userinp == 3:
-        rebook = input("Enter book name : ")
-        LibraryShelf.returnbook(rebook)
-    elif userinp == 4:
+  try:
+    choice = int(input("\nEnter you choice: "))
+    
+    if choice == 1:
+        LibraryShelf.show_books()
+    elif choice == 2:
+        issue_book = input("Enter the book name you want to issue : ")
+        LibraryShelf.issue_book(issue_book)
+    elif choice == 3:
+        rebook = input("Enter book name you want to return : ")
+        LibraryShelf.return_book(rebook)
+    elif choice == 4:
         print("\n\n\t***** THANK YOU FOR USING OUR LIBRARY ****\n")
         break
-s
+    else:
+        print("Please enter the valid option.")
+  except ValueError:
+    print("Invalid Input.. PLease enter a number.")            
